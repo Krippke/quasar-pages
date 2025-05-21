@@ -1,1 +1,38 @@
 /* app global css */
+
+.q-card {
+  transition: box-shadow 0.3s ease-in-out;
+  min-height: 380px; /* Ensure consistent card height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.q-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.q-img__image {
+  object-fit: cover !important; /* Ensure the image covers the area, !important to override potential inline styles */
+}
+
+.q-card .text-subtitle1 { /* Product Name */
+  font-weight: 500;
+  line-height: 1.2; /* Adjust line height for better text flow */
+  min-height: 2.4em; /* Reserve space for two lines of text */
+}
+
+.q-card .q-item__label--caption { /* Product Price */
+  color: #555;
+  font-size: 1rem; /* Slightly larger price */
+  font-weight: bold;
+}
+
+.q-card q-card-section {
+  padding: 16px; /* Default Quasar padding, ensure it's consistent */
+}
+
+/* Specific styling for the product card's main content section */
+.q-card > .q-card__section--main {
+  flex-grow: 1; /* Allow this section to take available space if card content is short */
+}

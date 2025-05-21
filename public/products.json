@@ -2,16 +2,19 @@
   {
     "id": 1,
     "name": "Product 1",
-    "price": 100
+    "price": 100,
+    "image": "https://i.picsum.photos/id/1/200/300.jpg?hmac=jH5bDkLr6Tgy3oAg5khKCHeunZMHq0ehBZr6vGifPLY"
   },
   {
     "id": 2,
     "name": "Product 2",
-    "price": 200
+    "price": 200,
+    "image": "https://i.picsum.photos/id/2/200/300.jpg?hmac=I_204Fsq23Rjx22j8R2TmkzDDo7GxDBH_JRIlK2R_2M"
   },
   {
     "id": 3,
     "name": "Product 3",
-    "price": 300
+    "price": 300,
+    "image": "https://i.picsum.photos/id/3/200/300.jpg?hmac=R_j0QV2M9vy2h6Z4D3U_L7vwr6K7xZ2xZ0Y_S_s_k_4"
   }
 ]
