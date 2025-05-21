@@ -1,74 +1,43 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <example-component
-      title="Example component"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component>
-
-    <q-card class="col-4">
-      <q-card-section>
-        <q-card-title>Products</q-card-title>
-      </q-card-section>
-
-      <q-card-section>
-        <q-list bordered>
-          <q-item v-for="product in products" :key="product.id" clickable v-ripple>
-            <q-item-section>
-              <q-item-label>{{ product.name }}</q-item-label>
-              <q-item-label caption>Price: {{ product.price }}</q-item-label>
-            </q-item-section>
-          </q-item>
-        </q-list>
-      </q-card-section>
-    </q-card>
+  <q-page class="row items-start q-pa-md">
+    <div class="col-12">
+      <h5 class="q-my-md">Products</h5>
+    </div>
+    <div v-for="product in products" :key="product.id" class="col-xs-12 col-sm-6 col-md-4 q-pa-sm">
+      <q-card>
+        <q-img :src="product.image" :ratio="1" />
+        <q-card-section>
+          <q-item-label class="text-subtitle1">{{ product.name }}</q-item-label>
+          <q-item-label caption>Price: ${{ product.price }}</q-item-label>
+        </q-card-section>
+      </q-card>
+    </div>
   </q-page>
 </template>
 
 <script setup lang="ts">
-import ExampleComponent from 'components/ExampleComponent.vue';
-import type { Meta, Todo } from 'components/models';
 import { onMounted, ref } from 'vue';
-
-const todos = ref<Todo[]>([
-  {
-    id: 1,
-    content: 'ct1',
-  },
-  {
-    id: 2,
-    content: 'ct2',
-  },
-  {
-    id: 3,
-    content: 'ct3',
-  },
-  {
-    id: 4,
-    content: 'ct4',
-  },
-  {
-    id: 5,
-    content: 'ct5',
-  },
-]);
-
-const meta = ref<Meta>({
-  totalCount: 1200,
-});
 
 const products = ref<
   Array<{
     id: number;
     name: string;
     price: number;
+    image: string; // Added image field
   }>
 >([]);
 
 onMounted(async () => {
-  await fetch('./products.json').then(async (res) => {
+  try {
+    const res = await fetch('/products.json'); // Ensure correct path for public assets
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
     products.value = await res.json();
-  });
+  } catch (error) {
+    console.error('Failed to fetch products:', error);
+    // Optionally, set products to an empty array or show an error message to the user
+    products.value = [];
+  }
 });
 </script>
