@@ -29,14 +29,13 @@ const products = ref<
 
 onMounted(async () => {
   try {
-    const res = await fetch('/products.json'); // Ensure correct path for public assets
+    const res = await fetch('./products.json');
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
     products.value = await res.json();
   } catch (error) {
     console.error('Failed to fetch products:', error);
-    // Optionally, set products to an empty array or show an error message to the user
     products.value = [];
   }
 });
